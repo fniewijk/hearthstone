@@ -6,7 +6,7 @@ const playerOne = player
 const playerTwo = player
 
 export {
-  minions,
-  playerOne,
-  playerTwo,
+	minions,
+	playerOne,
+	playerTwo,
 }
