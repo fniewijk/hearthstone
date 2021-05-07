@@ -1,9 +1,24 @@
 import { applyMiddleware, combineReducers, createStore, Store } from 'redux'
-import { playerOne, playerTwo } from './reducers'
+import { spells, validator } from './middleware'
+import { game } from './reducers'
+import { CardType } from './generic/types'
+import { newGameActionCreator } from './actions/game/index'
 
-const reducers = combineReducers([playerOne, playerTwo])
-const enhancers = applyMiddleware()
+const reducers = combineReducers([game])
+const enhancers = applyMiddleware(
+	validator,
+	spells
+)
 
 const store: Store = createStore(reducers, enhancers)
 
-console.log(store.getState())
+store.dispatch(newGameActionCreator([ 
+	[{ 
+		type: CardType.MINION,
+		manaCost: 1,
+		properties: []
+	}], 
+	[]
+]))
+
+console.log(JSON.stringify(store.getState()))

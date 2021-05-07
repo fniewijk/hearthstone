@@ -2,10 +2,10 @@ import { AnyAction } from 'redux'
 import { Card } from '../../generic/types'
 
 export enum PlayerActionType {
-  DAMAGE = 'DAMAGE',
-  MULLIGAN = 'MULLIGAN',
-  NEW_GAME = 'NEW_GAME',
-  PLAY_CARD = 'PLAY_CARD'
+  DAMAGE = 'PLAYER_DAMAGE',
+  MULLIGAN = 'PLAYER_MULLIGAN',
+  NEW_GAME = 'PLAYER_NEW_GAME',
+  PLAY_CARD = 'PLAYER_PLAY_CARD'
 }
 
 export interface DamagePlayerAction {
@@ -24,6 +24,17 @@ export interface NewGamePlayerAction extends AnyAction {
   }
 }
 
+export interface PlayCardPlayerAction extends AnyAction {
+  type: PlayerActionType.PLAY_CARD,
+  payload: {
+    handIndex: number,
+    playerIndex: number,
+    target?: {
+      playerIndex?: number,
+      minionIndex?: number
+    }
+  }
+}
 
 export const damagePlayerActionCreator = (amount: number, playerIndex: number): DamagePlayerAction => {
 	return {
@@ -41,6 +52,17 @@ export const newGamePlayerActionCreator = (deck: Card[], playerIndex: number): N
 		payload: {
 			deck,
 			playerIndex
+		}
+	}
+}
+
+export const playCardPlayerActionCreator = (handIndex: number, playerIndex: number, target?: { playerIndex?: number, minionIndex?: number } ) => {
+	return {
+		type: PlayerActionType.PLAY_CARD,
+		payload: {
+			handIndex,
+			playerIndex,
+			target
 		}
 	}
 }

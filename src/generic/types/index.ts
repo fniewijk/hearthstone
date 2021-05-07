@@ -10,7 +10,7 @@ export enum CardType {
 
 export enum MinionCardPropertyType {
   BATTLE_CRY,
-  DEATHRATTLE
+  DEATH_RATTLE
 }
 
 export interface BattlecryMinionCardProperty {
@@ -19,7 +19,7 @@ export interface BattlecryMinionCardProperty {
 }
 
 export interface DeathrattleMinionCardProperty {
-  type: MinionCardPropertyType.DEATHRATTLE,
+  type: MinionCardPropertyType.DEATH_RATTLE,
   properties: CardProperty[]
 }
 
@@ -81,11 +81,11 @@ export interface Minion {
   health: number,
 }
 
-export interface Player {
+export interface PlayerState {
   health: number,
   mana: number,
   hand: Card[],
   deck: Card[],
   minions: Minion[],
-  chooseCards: Card[],
+  chooseCards?: Card[],
 }

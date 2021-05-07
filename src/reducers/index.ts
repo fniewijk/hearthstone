@@ -1,12 +1,5 @@
-import minions from './minions'
-import player from './player'
-
-// TODO add types
-const playerOne = player
-const playerTwo = player
+import game from './game'
 
 export {
-	minions,
-	playerOne,
-	playerTwo,
+	game
 }
