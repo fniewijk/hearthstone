@@ -1,8 +1,8 @@
 import { applyMiddleware, combineReducers, createStore, Store } from 'redux'
-import { spells, validator } from './middleware'
-import { game } from './reducers'
-import { CardType } from './generic/types'
-import { newGameActionCreator } from './actions/game/index'
+import { spells, validator } from './engine/middleware'
+import { game } from './engine/reducers'
+import { CardType } from './engine/generic/types'
+import { newGameActionCreator } from './engine/actions/game/index'
 
 const reducers = combineReducers([game])
 const enhancers = applyMiddleware(
